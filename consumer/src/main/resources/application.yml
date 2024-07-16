@@ -8,3 +8,6 @@ spring:
     virtual-host: /hmall # 虚拟主机
     username: hmall # 用户名
     password: 123456 # 密码
+    listener:
+      simple:
+        prefetch: 10
