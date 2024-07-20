@@ -57,4 +57,8 @@ public class SpringRabbitListener {
         log.info("代码指定交换机队列：{}",msg);
     }
 
+    @RabbitListener(queues = "object.queue")
+    public void objectSerializableListener(String msg){
+        log.info("代码指定交换机队列：{}",msg);
+    }
 }
