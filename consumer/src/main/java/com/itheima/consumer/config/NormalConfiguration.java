@@ -1,9 +1,10 @@
 package com.itheima.consumer.config;
 
-import com.sun.org.apache.bcel.internal.generic.PUSH;
 import org.springframework.amqp.core.*;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
+@Configuration
 public class NormalConfiguration {
 
     @Bean

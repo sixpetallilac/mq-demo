@@ -3,9 +3,11 @@ package com.itheima.publisher;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
+import org.springframework.amqp.AmqpException;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessageBuilder;
 import org.springframework.amqp.core.MessageDeliveryMode;
+import org.springframework.amqp.core.MessagePostProcessor;
 import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -119,5 +121,20 @@ class SpringAmqpTest {
     @Test
     void simpleOneTest(){
         rabbitTemplate.convertAndSend("simple.queue","hello amqp");
+    }
+    @Test
+    void delayMessage(){
+        rabbitTemplate.convertAndSend("normal.direct", "hi", "hello", message -> {
+            message.getMessageProperties().setExpiration("5000");
+            return message;
+        });
+    }
+
+    @Test
+    void delayQueueTest(){
+        rabbitTemplate.convertAndSend("delay.direct", "hi", "hello", message -> {
+            message.getMessageProperties().setDelay(5000);
+            return message;
+        });
     }
 }
