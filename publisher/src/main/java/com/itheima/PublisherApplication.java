@@ -1,4 +1,4 @@
-package com.itheima.publisher;
+package com.itheima;
 
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.amqp.support.converter.MessageConverter;
@@ -14,6 +14,8 @@ public class PublisherApplication {
 
     @Bean
     public MessageConverter messageConverter(){
-        return new Jackson2JsonMessageConverter();
+        Jackson2JsonMessageConverter jjmc = new Jackson2JsonMessageConverter();
+        jjmc.setCreateMessageIds(true);
+        return jjmc;
     }
 }

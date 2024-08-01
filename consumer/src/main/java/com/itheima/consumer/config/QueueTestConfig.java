@@ -10,10 +10,13 @@ import org.springframework.context.annotation.Configuration;
 
 
 @Configuration
-public class MessageConfig {
+public class QueueTestConfig {
 
     @Bean
-    public Queue objQueue(){
-        return QueueBuilder.durable("object.queue").build();
+    public Queue lazyQueue(){
+        return QueueBuilder
+                .durable("lazy.queue")
+                .lazy()
+                .build();
     }
 }
